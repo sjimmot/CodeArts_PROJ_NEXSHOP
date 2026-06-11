@@ -66,52 +66,85 @@ erDiagram
 
     SEDE {
         INT id_sede PK
+        VARCHAR nombre
+        ENUM tipo
+        VARCHAR ciudad
     }
 
     EMPLEADO {
         INT id_empleado PK
+        VARCHAR dni
+        VARCHAR nombre
+        VARCHAR email_corporativo
+        DATE fecha_incorporacion
+        ENUM cargo
         INT id_sede FK
     }
 
     CLIENTE {
         INT id_cliente PK
+        VARCHAR nombre
+        VARCHAR apellidos
+        VARCHAR email
+        VARCHAR contrasena
+        DATE fecha_nac
     }
 
     DIRECCION {
         INT id_direccion PK
         INT id_cliente FK
+        ENUM tipo_direccion
+        VARCHAR calle
+        VARCHAR numero
+        VARCHAR bloque
+        VARCHAR planta
+        VARCHAR puerta
+        VARCHAR cp
+        VARCHAR ciudad
+        VARCHAR pais
     }
 
     CATEGORIA {
         INT id_categoria PK
+        VARCHAR nombre
     }
 
     SUBCATEGORIA {
         INT id_subcategoria PK
         INT id_categoria FK
+        VARCHAR nombre
     }
 
     PRODUCTO {
         INT id_producto PK
         INT id_subcategoria FK
+        VARCHAR nombre
     }
 
     HISTORICO_PVP {
         INT id_historico PK
         INT id_producto FK
+        DECIMAL pvp
+        DATETIME fecha_inicio
+        DATETIME fecha_fin
     }
 
     PROMOCION {
         INT id_promocion PK
+        VARCHAR nombre
+        DECIMAL descuento_pct
+        DATETIME fecha_inicio
+        DATETIME fecha_fin
     }
 
     PRODUCTO_PROMOCION {
-        INT id_producto FK
-        INT id_promocion FK
+        INT id_producto PK,FK
+        INT id_promocion PK,FK
     }
 
     PROVEEDOR {
         INT id_proveedor PK
+        VARCHAR nombre
         INT id_empleado_rep FK
     }
 
@@ -119,18 +152,25 @@ erDiagram
         INT id_acuerdo PK
         INT id_producto FK
         INT id_proveedor FK
+        DECIMAL precio_coste
+        SMALLINT plazo_entrega_dias
+        DATE fecha_inicio
+        DATE fecha_fin
     }
 
     STOCK {
-        INT id_sede FK
-        INT id_producto FK
+        INT id_sede PK,FK
+        INT id_producto PK,FK
+        MEDIUMINT cantidad
     }
 
     TRANSFERENCIA_STOCK {
         INT id_transferencia PK
+        DATETIME fecha
         INT id_sede_origen FK
         INT id_sede_destino FK
         INT id_producto FK
+        MEDIUMINT cantidad
         INT id_empleado_autoriza FK
     }
 
@@ -138,22 +178,29 @@ erDiagram
         INT id_pedido PK
         INT id_cliente FK
         INT id_direccion FK
+        DATETIME fecha
     }
 
     LINEA_PEDIDO_ONLINE {
-        INT id_pedido FK
-        INT id_producto FK
+        INT id_pedido PK,FK
+        INT id_producto PK,FK
+        SMALLINT cantidad
+        DECIMAL precio_unitario
     }
 
     ENVIO {
         INT id_envio PK
         INT id_pedido FK
         INT id_sede_origen FK
+        VARCHAR num_seguimiento
+        VARCHAR transportista
+        DATE fecha_estimada
     }
 
     LINEA_ENVIO {
-        INT id_envio FK
-        INT id_producto FK
+        INT id_envio PK,FK
+        INT id_producto PK,FK
+        SMALLINT cantidad
     }
 
     TICKET_TIENDA {
@@ -161,33 +208,49 @@ erDiagram
         INT id_sede FK
         INT id_empleado FK
         INT id_cliente FK
+        DATETIME fecha
     }
 
     LINEA_TICKET_TIENDA {
-        INT id_ticket FK
-        INT id_producto FK
+        INT id_ticket PK,FK
+        INT id_producto PK,FK
+        SMALLINT cantidad
+        DECIMAL precio_unitario
     }
 
     DEVOLUCION {
         INT id_devolucion PK
         INT id_ticket FK
+        DATETIME fecha
     }
 
     TICKET_INCIDENCIA {
         INT id_incidencia PK
         INT id_cliente FK
+        VARCHAR asunto
+        TEXT descripcion
+        DATETIME fecha_apertura
+        ENUM estado
         INT id_empleado FK
         INT id_pedido FK
+        DATETIME fecha_cierre
+        TEXT nota_resolucion
     }
 
     VALORACION {
-        INT id_producto FK
-        INT id_cliente FK
+        INT id_producto PK,FK
+        INT id_cliente PK,FK
+        TINYINT puntuacion
+        TEXT comentario
+        BOOLEAN compra_verificada
     }
 
     MOVIMIENTO_PUNTOS {
         INT id_movimiento PK
         INT id_cliente FK
+        DATETIME fecha
         INT id_pedido FK
+        MEDIUMINT cantidad
+        ENUM tipo
     }
 ```
