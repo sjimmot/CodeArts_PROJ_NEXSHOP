@@ -1,4 +1,3 @@
-```markdown
 # Proyecto de Base de Datos:
 ## Base de Datos para NexShop Group S.A.
 
@@ -10,6 +9,25 @@ Este proyecto consiste en el análisis, diseño e implementación desde cero de 
 
 # Explicación de la empresa modelada:
 NexShop Group S.A. es una empresa ficticia dedicada a la distribución y venta al por menor que fue fundada en el año 2015 con su sede principal ubicada en Valencia. La organización opera en el mercado mediante dos canales de venta bien diferenciados: una plataforma de venta online a través de internet (digamos nexshop.es) y una red logística presencial de tres tiendas físicas ubicadas estratégicamente en las ciudades de Valencia, Madrid y Barcelona.
+
+## Instrucciones para importar la base de datos y ejecutar las consultas
+Para probar la base de datos y experimentar con las consultas, se recomienda utilizar MySQL Workbench 8.0 CE.
+
+### Paso 1: Creación de la estructura (Esquema)
+1. Abre MySQL Workbench e inicia sesión en tu servidor de MySQL o MariaDB con una cuenta con los permisos adecuados.
+2. En el menú superior, selecciona **File** --> **Open SQL Script...**.
+3. Navega por las carpetas del repositorio y abre el archivo "sql/schema.sql".
+4. En la barra inmediatamente superior de la vista del script, haz clic en el icono del **rayo amarillo** (el que muestra el texto flotante de "Execute" al poner el ratón encima). Esto ejecutará el código completo, creando la base de datos "nexshop_db" y generando las 24 tablas en blanco con todas sus reglas operativas.
+
+### Paso 2: Inserción de los datos de prueba
+1. Repite el proceso yendo a **File** --> **Open SQL Script...**
+2. Abre ahora el archivo `sql/datos.sql`.
+3. Ejecútalo haciendo clic de nuevo en el icono del **rayo amarillo**. Esto poblará las tablas con los registros ficticios realistas para que el sistema tenga información que procesar.
+4. En el panel lateral izquierdo (Navigator), dentro de la pestaña **Schemas**, haz clic derecho en el área en blanco y selecciona **Refresh All**. La base de datos `nexshop_db` aparecerá visible y lista para ser manipulada.
+
+### Paso 3: Ejecución de las consultas
+1. Finalmente, abre el archivo `consultas/consultas.sql` siguiendo el mismo procedimiento.
+2. Verás las 14 consultas documentadas. Puedes ejecutarlas todas de golpe, o seleccionar con el ratón el bloque de texto de una consulta específica y hacer clic en el icono del **rayo con un cursor** ("Execute the selected portion") para ver su resultado de forma individual e inspeccionar cómo actúan los filtros y cruces de datos.
 
 # Diagrama Entidad-Relación (ER):
 El siguiente diagrama describe la totalidad de las veinticuatro entidades del sistema con sus correspondientes claves primarias y foráneas, aplicando una notación limpia que explicita las cardinalidades relacionales requeridas.
